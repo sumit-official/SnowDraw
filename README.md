@@ -22,7 +22,7 @@ This is a first XFCE/X11 behavior prototype, not a feature-complete Epic Pen rep
 
 - GTK 3 and the X11 Shape extension are required.
 - The overlay covers the primary X screen geometry; multi-monitor layouts need further testing and work.
-- Drawing is currently a basic pen plus stroke eraser. Highlighter, shapes, arrows, text-on-desktop, pressure, and redo are not implemented yet.
+- Drawing is currently a basic pen plus stroke eraser. Highlighter, shapes, arrows, text-on-desktop, and pressure are not implemented yet.
 - Keyboard shortcuts and autostart integration are not implemented.
 - The project compiles and launches on an X11 system, but its interactive behavior still needs testing on an XFCE/X11 desktop before relying on it.
 
