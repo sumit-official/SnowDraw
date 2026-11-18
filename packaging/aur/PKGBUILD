@@ -1,0 +1,38 @@
+# Maintainer: SnowDrag <hyoncode@gmail.com>
+pkgname=snowdraw
+pkgver=0.2.0
+pkgrel=1
+pkgdesc="Epic Pen style on-screen annotation tool for Linux (X11/XFCE)"
+arch=('x86_64' 'aarch64')
+url="https://github.com/sumit-official/snowdraw"
+license=('MIT')
+depends=('gtk3' 'cairo' 'glib2' 'gdk-pixbuf2' 'pango' 'atk' 'librsvg' 'hicolor-icon-theme')
+makedepends=('cargo')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$pkgname-$pkgver"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
+build() {
+  cd "$pkgname-$pkgver"
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo build --frozen --release
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -Dm644 "$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
+  install -Dm644 "$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+  for size in 16 32 48 64 128 256; do
+    install -Dm644 "icons/$pkgname-$size.png" \
+      "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/$pkgname.png"
+  done
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

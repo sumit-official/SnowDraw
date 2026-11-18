@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=SnowDraw
+Comment=Desktop annotation for XFCE on X11
+Exec=env GDK_BACKEND=x11 snowdraw
+Icon=snowdraw
+Terminal=false
+Categories=Utility;Graphics;
+Keywords=annotate;draw;screen;pen;
