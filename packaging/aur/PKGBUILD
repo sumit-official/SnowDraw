@@ -9,23 +9,23 @@ license=('MIT')
 depends=('gtk3' 'cairo' 'glib2' 'gdk-pixbuf2' 'pango' 'atk' 'librsvg' 'hicolor-icon-theme')
 makedepends=('cargo')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('51d858abcb59e993d4366d547be07b220a9fb7df2a7a653a1ca31f7a37078ae4')
 
 prepare() {
-  cd "$pkgname-$pkgver"
+  cd "SnowDraw-$pkgver"
   export RUSTUP_TOOLCHAIN=stable
   cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
 }
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "SnowDraw-$pkgver"
   export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
   cargo build --frozen --release
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "SnowDraw-$pkgver"
   install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
   install -Dm644 "$pkgname.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
   install -Dm644 "$pkgname.svg" "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"

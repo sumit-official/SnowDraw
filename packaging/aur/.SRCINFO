@@ -1,0 +1,21 @@
+pkgbase = snowdraw
+	pkgdesc = Epic Pen style on-screen annotation tool for Linux (X11/XFCE)
+	pkgver = 0.2.0
+	pkgrel = 1
+	url = https://github.com/sumit-official/snowdraw
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = cargo
+	depends = gtk3
+	depends = cairo
+	depends = glib2
+	depends = gdk-pixbuf2
+	depends = pango
+	depends = atk
+	depends = librsvg
+	depends = hicolor-icon-theme
+	source = snowdraw-0.2.0.tar.gz::https://github.com/sumit-official/snowdraw/archive/refs/tags/v0.2.0.tar.gz
+	sha256sums = 51d858abcb59e993d4366d547be07b220a9fb7df2a7a653a1ca31f7a37078ae4
+
+pkgname = snowdraw
